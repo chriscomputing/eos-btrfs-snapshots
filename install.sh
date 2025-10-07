@@ -53,6 +53,9 @@ install -m 700 src/create-snapshot.sh /usr/local/sbin/
 # copy systemd files
 install -m 644 systemd/* /etc/systemd/system
 
+# enable grub-btrfsd
+systemctl enable --now grub-btrfsd.service
+
 # enable systemd units
 systemctl enable --now eos-btrfs-homesnapshot.timer
 systemctl enable --now eos-btrfs-rootsnapshot.timer
