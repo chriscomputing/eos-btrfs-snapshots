@@ -23,15 +23,22 @@ fi
 # disable timers
 systemctl disable --now eos-btrfs-homesnapshot.timer
 systemctl disable --now eos-btrfs-rootsnapshot.timer
+systemctl disable --now eos-btrfs-prune-homesnapshot.timer
+systemctl disable --now eos-btrfs-prune-rootsnapshot.timer
 
-# remove create-snapshot script
+# remove scripts
 rm /usr/local/sbin/create-snapshot.sh
+rm /usr/local/sbin/prune-snapshot.sh
 
 # remove systemd timers and services
 rm /etc/systemd/system/eos-btrfs-homesnapshot.service
 rm /etc/systemd/system/eos-btrfs-homesnapshot.timer
 rm /etc/systemd/system/eos-btrfs-rootsnapshot.service
 rm /etc/systemd/system/eos-btrfs-rootsnapshot.timer
+rm /etc/systemd/system/eos-btrfs-prune-homesnapshot.service
+rm /etc/systemd/system/eos-btrfs-prune-homesnapshot.timer
+rm /etc/systemd/system/eos-btrfs-prune-rootsnapshot.service
+rm /etc/systemd/system/eos-btrfs-prune-rootsnapshot.timer
 
 # done
 echo "Successfully uninstalled eos-btrfs-snapshot"

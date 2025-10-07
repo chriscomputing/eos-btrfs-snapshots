@@ -1,0 +1,6 @@
+[Unit]
+Description=Prune snapshots of the /home subvolume
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/prune-snapshot.sh /home/.snapshots/ 7

@@ -1,0 +1,9 @@
+[Unit]
+Description=Prune the btrfs snapshots of the / subvolume daily
+
+[Timer]
+OnCalendar=daily
+Persistent=true
+
+[Install]
+WantedBy=timers.target

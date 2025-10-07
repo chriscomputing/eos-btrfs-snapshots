@@ -49,6 +49,7 @@ btrfs subvolume create /home/.snapshots
 
 # copy snapshot script
 install -m 644 src/create-snapshot.sh /usr/local/sbin/
+install -m 644 src/prune-snapshot.sh /usr/local/sbin/
 
 # copy systemd files
 install -m 644 systemd/* /etc/systemd/system
@@ -60,4 +61,18 @@ systemctl enable --now grub-btrfsd.service
 systemctl enable --now eos-btrfs-homesnapshot.timer
 systemctl enable --now eos-btrfs-rootsnapshot.timer
 
-echo "Installed eos-btrfs-snapshot successfully"
+# ask about pruning
+echo "eos-btrfs-snapshots can also prune existing snapshots. By default, the youngest 7 snapshots will be retained"
+read -p "Do you wish to activate pruning of the / snapshots? (y/n)" answer
+if [[ "$answer" != "y" ]]; then
+    systemctl enable --now eos-btrfs-prune-rootsnapshot.timer
+    echo "Successfully activated pruning of / snapshots"
+fi
+
+read -p "Do you wish to activate pruning of the /home snapshots? (y/n)" answer
+if [[ "$answer" != "y" ]]; then
+    systemctl enable --now eos-btrfs-prune-rootsnapshot.timer
+    echo "Successfully activated pruning of /home snapshots"
+fi
+
+echo "Installed successfully"
