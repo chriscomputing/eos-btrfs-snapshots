@@ -14,7 +14,7 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 # check if grub bootloader is used
-if ! grep -q "GRUB" /boot/grub/grub.cfg 2>/dev/null; then
+if ! ls /boot/grub/grub.cfg 2>/dev/null; then
     echo "GRUB bootloader not detected. Exiting."
     exit 2
 fi
