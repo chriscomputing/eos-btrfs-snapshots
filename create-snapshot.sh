@@ -26,13 +26,13 @@ if [ ! -d  "$directory" ]; then
 fi
 
 # check if btrfs is installed
-if ! command btrfs version; then
+if ! command btrfs version > /dev/null; then
   echo "Could not find btrfs utility, make sure it is installed" >&2
   exit 2
 fi
 
 # check if subvolume exists
-if ! btrfs subvolume show "$subvolume"; then
+if ! btrfs subvolume show "$subvolume" > /dev/null; then
   echo "$(realpath -m "$subvolume") is not a btrfs subvolume" >&2
   exit 2
 fi
