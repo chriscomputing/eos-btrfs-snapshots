@@ -11,7 +11,7 @@ set -e
 
 # check correct usage
 if [ "$#" -ne 2 ]; then
-  echo "Usage: $0 <subvolume> <directory>" "$0" >&2
+  echo "Usage: $0 <subvolume> <directory>" >&2
   exit 2
 fi
 

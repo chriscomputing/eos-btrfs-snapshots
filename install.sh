@@ -48,7 +48,7 @@ btrfs subvolume create /.snapshots
 btrfs subvolume create /home/.snapshots
 
 # copy snapshot script
-install -m 700 src/create-snapshot.sh /usr/local/sbin/
+install -m 644 src/create-snapshot.sh /usr/local/sbin/
 
 # copy systemd files
 install -m 644 systemd/* /etc/systemd/system
