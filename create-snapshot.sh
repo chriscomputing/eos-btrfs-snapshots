@@ -21,7 +21,7 @@ safe_name=$(echo "$subvolume" | tr '/' '_')
 
 # check if directory exists
 if [ ! -d  "$directory" ]; then
-  echo "Cannot create snapshot in "$directory" because directory does not exist" >&2
+  echo "Cannot create snapshot in $(realpath -m "$directory") because directory does not exist" >&2
   exit 2
 fi
 
@@ -33,7 +33,7 @@ fi
 
 # check if subvolume exists
 if ! btrfs subvolume show "$subvolume"; then
-  echo ""$subvolume" is not a btrfs subvolume" >&2
+  echo "$(realpath -m "$subvolume") is not a btrfs subvolume" >&2
   exit 2
 fi
 
